@@ -56,4 +56,7 @@ public class EligibilitySection {
 
     @FindBy(how = How.XPATH, using = "//*[@id=\"js-app\"]/div/div/div[2]/div[2]/div/div/div[1]/span[1]/div")
     public WebElement msgEligibilityAdvice;
+
+    @FindBy (how = How.XPATH, using = "//*[@id=\"js-app\"]/div/div/div[2]/div[2]/div/div/div[1]/span[1]/div/span/a")
+    public WebElement linkExternalWebsite;
 }

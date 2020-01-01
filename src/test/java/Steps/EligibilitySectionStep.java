@@ -11,6 +11,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+
 @SuppressWarnings("ALL")
 public class EligibilitySectionStep extends BaseUtil {
 
@@ -94,6 +97,7 @@ public class EligibilitySectionStep extends BaseUtil {
         // Wait for "Check your Eligibility" to be displayed
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("react-eligibility-sg_registered_check-false")));
 
+        // Click on No for the first question
         base.Driver.findElement(By.xpath("//*[@id=\"js-app\"]/div/div/div[2]/div[2]/div/div/div[1]/div[4]/div/div[2]/label[2]/span[1]")).click();
     }
 
@@ -102,5 +106,33 @@ public class EligibilitySectionStep extends BaseUtil {
         EligibilitySection eligibilitySection = new EligibilitySection(base.Driver);
         eligibilitySection.msgEligibilityAdvice.isDisplayed();
         System.out.println("Warning message is displayed when user select No to question 1.");
+    }
+
+    @And("I click the link in the warning message")
+    public void iClickTheLinkInTheWarningMessage() {
+        EligibilitySection eligibilitySection = new EligibilitySection(base.Driver);
+        eligibilitySection.linkExternalWebsite.click();
+    }
+
+    @Then("I should see the website launch in a new window tab")
+    public void iShouldSeeTheWebsiteLaunchInANewWindowTab() {
+
+        ArrayList<String> newTab = new ArrayList<String>(base.Driver.getWindowHandles());
+        System.out.println(newTab);
+        System.out.println(newTab.size());
+        base.Driver.switchTo().window(newTab.get(1));
+        Assert.assertEquals("External site URL does not match.", "https://www.smeportal.sg/content/smeportal/en/moneymatters.html#saText", base.Driver.getCurrentUrl());
+    }
+
+    @And("I click Save and reload the page")
+    public void iClickSaveAndReloadThePage() {
+        base.Driver.findElement(By.xpath("//*[@id=\"save-btn\"]")).click();
+    }
+
+    @Then("I should see my applicant's response saved")
+    public void iShouldSeeMyApplicantSResponseSaved() {
+        base.Driver.navigate().refresh();
+        // No should be selected for the first question
+        base.Driver.findElement(By.xpath("//*[@id=\"js-app\"]/div/div/div[2]/div[2]/div/div/div[1]/div[4]/div/div[2]/label[2]/span[1]")).isSelected();
     }
 }

@@ -19,10 +19,14 @@ Feature: Eligibility Section
     And I click No for any question
     Then I should see a warning message displayed
 
-#  Scenario: Click link in warning message will launch website in new window tab
-#    When I click the link in the warning message
-#    Then I should see the website launch in a new window tab
-#
-#  Scenario: Save applicant's response
-#    When I click Save and reload the page
-#    Then I should see my applicant's response saved
+  Scenario: Click link in warning message will launch website in new window tab
+    When I click Proceed on the draft form
+    And I click No for any question
+    And I click the link in the warning message
+    Then I should see the website launch in a new window tab
+
+  Scenario: Save applicant's response
+    When I click Proceed on the draft form
+    And I click No for any question
+    And I click Save and reload the page
+    Then I should see my applicant's response saved
