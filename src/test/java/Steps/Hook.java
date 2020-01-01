@@ -7,6 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 
+@SuppressWarnings("ALL")
 public class Hook extends BaseUtil {
 
     private BaseUtil base;

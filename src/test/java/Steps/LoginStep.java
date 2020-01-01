@@ -1,17 +1,14 @@
 package Steps;
 
 import Base.BaseUtil;
-import cucumber.api.PendingException;
+import Pages.LoginPage;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
-import Pages.LoginPage;
 
-import java.util.BitSet;
-
+@SuppressWarnings("ALL")
 public class LoginStep extends BaseUtil {
     private BaseUtil base;
 
@@ -61,6 +58,4 @@ public class LoginStep extends BaseUtil {
         Assert.assertEquals("https://bgp-qa.gds-gov.tech/dashboard", url);
         System.out.println("I see my grants page");
     }
-
-
 }
