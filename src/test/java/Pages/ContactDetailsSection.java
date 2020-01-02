@@ -44,7 +44,7 @@ public class ContactDetailsSection {
     public WebElement txtAddressStreet;
 
     @FindBy(how = How.ID, using = "react-contact_info-correspondence_address-copied")
-    public WebElement radioBtnAddressCopied;
+    public WebElement chkAddressCopied;
 
     @FindBy(how = How.ID, using = "react-contact_info-correspondence_address-level")
     public WebElement txtAddressLevel;
@@ -63,4 +63,7 @@ public class ContactDetailsSection {
 
     @FindBy(how = How.ID, using = "react-contact_info-offeree_email")
     public WebElement txtOffereeEmail;
+
+    @FindBy(how = How.ID, using = "react-contact_info-copied")
+    public WebElement chkOffereeContactCopied;
 }

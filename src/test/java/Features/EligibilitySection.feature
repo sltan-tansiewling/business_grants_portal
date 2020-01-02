@@ -25,7 +25,7 @@ Feature: Eligibility Section
     And I click the link in the warning message
     Then I should see the website launch in a new window tab
 
-  Scenario: Save applicant's response
+  Scenario: Save applicant's response for Eligibility section
     When I click Proceed on the draft form
     And I click No for any question
     And I click Save and reload the page

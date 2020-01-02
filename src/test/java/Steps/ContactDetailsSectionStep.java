@@ -66,9 +66,9 @@ public class ContactDetailsSectionStep extends BaseUtil {
         ContactDetailsSection contactDetailsSection = new ContactDetailsSection(base.Driver);
 
         WebDriverWait wait = new WebDriverWait(base.Driver, 20);
-        wait.until(ExpectedConditions.visibilityOf(contactDetailsSection.radioBtnAddressCopied));
+        wait.until(ExpectedConditions.visibilityOf(contactDetailsSection.chkAddressCopied));
 
-        contactDetailsSection.radioBtnAddressCopied.click();
+        contactDetailsSection.chkAddressCopied.click();
     }
 
     @Then("mailing address is auto-populated")
@@ -93,4 +93,24 @@ public class ContactDetailsSectionStep extends BaseUtil {
         contactDetailsSection.txtOffereeDesignation.isDisplayed();
         contactDetailsSection.txtOffereeEmail.isDisplayed();
     }
+
+    @And("I select Same as main contact person option")
+    public void iSelectSameAsMainContactPersonOption() {
+        ContactDetailsSection contactDetailsSection = new ContactDetailsSection(base.Driver);
+
+        WebDriverWait wait = new WebDriverWait(base.Driver, 20);
+        wait.until(ExpectedConditions.visibilityOf(contactDetailsSection.letterOfOfferAddresseeSection));
+
+        contactDetailsSection.chkOffereeContactCopied.click();
+    }
+
+    @Then("I should see the same name, job title and email populated as entered in main contact person section")
+    public void iShouldSeeTheSameNameJobTitleAndEmailPopulatedAsEnteredInMainContactPersonSection() {
+        ContactDetailsSection contactDetailsSection = new ContactDetailsSection(base.Driver);
+
+        Assert.assertEquals("Name does not match.", contactDetailsSection.txtName.getAttribute("value"), contactDetailsSection.txtOffereeName.getAttribute("value"));
+        Assert.assertEquals("Job Title does not match.", contactDetailsSection.txtJobTitle.getAttribute("value"), contactDetailsSection.txtOffereeDesignation.getAttribute("value"));
+        Assert.assertEquals("Email does not match.", contactDetailsSection.txtPrimaryEmail.getAttribute("value"), contactDetailsSection.txtOffereeEmail.getAttribute("value"));
+    }
+
 }
